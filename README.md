@@ -41,21 +41,20 @@ Basic page layout
 
 Fetch wiki article content
 
- ## To-dos
- Data base: structure(login, wikiarticle-blog)
+Data base: structure(login, wikiarticle-blog)
 
- Optimize fetching wiki article content: 
+Optimize fetching wiki article content: 
     what if the response is only a title?
     what if the response is a series of related hyperlink?
     what if the input is a random string
  
- Login function
+Login function
  
- Optimize the layout of article content
+Optimize the layout of article content
 
- Anotate the article
+Anotate the article
 
- Home page: update articles in database(by getting json?)
+Home page: update articles in database(by getting json?)
 
   ## Notes of some features / components
 
