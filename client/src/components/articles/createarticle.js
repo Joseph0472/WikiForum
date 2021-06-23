@@ -2,6 +2,7 @@ import React from 'react'
 import {connect} from 'react-redux'
 import {createArticle} from '../../redux/actions/articleactions'
 import FetchArticle from '../fetcharticle'
+import SelectionHighlighter from 'react-highlight-selection';
 // import {TokenAnnotator, TextAnnotator} from 'react-text-annotate'
 // import SelectionHighlighter from "react-highlight-selection";
 
@@ -10,6 +11,7 @@ class CreateArticle extends React.Component {
     state = {
         title : '',
         content : '',
+        wikiContent: '',
         firstName : localStorage.getItem('firstName'),
         lastName : localStorage.getItem('lastName'),
         htmlContent:''
@@ -39,12 +41,28 @@ class CreateArticle extends React.Component {
       e.preventDefault();
     }
 
+    getWikiContent = (fetchedContent) => {
+        this.setState({
+            wikiContent: fetchedContent
+        })
+    }
+
+    handleClick = () => {
+        console.log(this.state)
+    }
+
+    selectionHandler(selection) {
+        //do something with selection
+        console.log(selection);
+     
+      }
+
     render() {
         return(
             <div className="container">
                 <form onSubmit={this.handleSubmit} className="white" id="createarticleform">
                 <h4>New Article</h4>
-                <FetchArticle />
+                <FetchArticle updateContent={(content)=>this.getWikiContent(content)} />
                 <div className="input-field">
                     <label htmlFor="title">Title</label>
                     <input type="text" id="title" onChange={this.handleChange} required/>
@@ -58,6 +76,12 @@ class CreateArticle extends React.Component {
                 </div>
                 {console.log(this.state.content)}
                 </form>
+                <button onClick = {this.handleClick}>state</button>
+                <SelectionHighlighter
+                    text={this.state.wikiContent}
+                    selectionHandler={this.selectionHandler}
+                    customClass='custom-class'
+                />
             </div>
         );
     }
