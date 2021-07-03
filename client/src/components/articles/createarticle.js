@@ -21,6 +21,7 @@ class CreateArticle extends React.Component {
         super(props);
         this.handleChange = this.handleChange.bind(this);
         this.handleSubmit = this.handleSubmit.bind(this);
+        //this.selectionHandler = this.selectionHandler.bind(this);
     }
 
     handleChange = (e) => {
@@ -48,40 +49,31 @@ class CreateArticle extends React.Component {
     }
 
     handleClick = () => {
-        console.log(this.state)
+        console.log(this.state.wikiContent)
     }
-
-    selectionHandler(selection) {
-        //do something with selection
-        console.log(selection);
-     
-      }
 
     render() {
         return(
             <div className="container">
                 <form onSubmit={this.handleSubmit} className="white" id="createarticleform">
-                <h4>New Article</h4>
-                <FetchArticle updateContent={(content)=>this.getWikiContent(content)} />
+                <h5>New Post</h5>
+                <div id="wikiContent">
+                    <FetchArticle updateContent={(content)=>this.getWikiContent(content)} />
+                </div>
                 <div className="input-field">
                     <label htmlFor="title">Title</label>
                     <input type="text" id="title" onChange={this.handleChange} required/>
                 </div>
                 <div className="input-field">
                     <label htmlFor="content">Content</label>
-                    <textarea id="content" className="materialize-textarea" style={{height: 500}} onChange={this.handleChange} required></textarea>
+                    <textarea id="content" className="materialize-textarea" style={{height: 300}} onChange={this.handleChange} required></textarea>
                 </div>
                 <div className="input-field">
                     <button className="btn pink lighten-1 z-depth-0" name = 'createArticle' type="submit">Create</button>
                 </div>
-                {console.log(this.state.content)}
                 </form>
                 <button onClick = {this.handleClick}>state</button>
-                <SelectionHighlighter
-                    text={this.state.wikiContent}
-                    selectionHandler={this.selectionHandler}
-                    customClass='custom-class'
-                />
+                <button onClick = {this.selectionHandler}>Get the selected text!</button>
             </div>
         );
     }
